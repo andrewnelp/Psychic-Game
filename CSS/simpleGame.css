@@ -1,3 +1,12 @@
+body {
+font-family: 'Srisakdi', cursive;
+font-weight: 700;
+}
+
+.container {
+  width: 40%;
+  font-size: 1.1rem;
+}
 .answer {
 color: red;
 font-size: 1.2rem;
