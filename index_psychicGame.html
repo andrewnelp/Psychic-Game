@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hang Man</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="CSS/simpleGame.css">
+  <!-- <script src="main.js"></script> -->
+</head>
+<body>
+  <div class="container">
+    <h1>The Psychic Game</h1>
+    
+    <p>Guess what letter I'm thinking of: <span id='answer'></span></p>
+    <!-- <button type="button">Play Again!</button> -->
+    <p>Wins: <span id='wins'>0</span></p>
+    <p>Losses: <span id='losses'> 0 </span></p>
+    <p>Guesses Left: <span id='guessesLeft'>10</span></p>
+    <p> Your Guesses so far: <span id='soFar'> </span></p>
+  </div>
+ 
+
+    <script type="text/javascript">
+    var letterArr = ['a', 'b', 'c', 'd','e','f'];
+    // var letterArr =  function (charA, charZ) {
+    //   var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+    //   for (; i <= j; ++i) {
+    //     a.push(String.fromCharCode(i));
+    //   }
+    //   return a;
+    //   console.log(a);
+    // };
+
+    var randomNum;
+    var randomLetter;
+    var wins = 0;
+    var losses = 0;
+     var guessesLeft;
+    var guessesSoFarArr = [];
+    var s = ' ';
+    var letterPressed;
+    var rL;
+    
+    
+   // functions*********************************
+      function startGame() {
+        var randomNum = Math.floor(Math.random() * letterArr.length);
+        randomLetter = letterArr[randomNum];
+        console.log(randomLetter);
+        // document.querySelector('#answer').classList.remove('answer');
+
+        //reset
+        //guesses Left shows only even numbers;
+        guessesLeft = 11;
+        guessesSoFarArr.length = 0;
+        ////does not work - shows not empty array but some last guessed letters;
+        guessesSoFarArr = [];
+        guessesSoFar();
+
+        //changing html
+        document.querySelector('#answer').innerHTML = '???';
+        document.querySelector('#wins').innerHTML = wins;
+        document.querySelector('#losses').innerHTML = losses;
+      }
+      startGame();
+      
+      //creating array of pressed letters
+      function guessesSoFar() {
+        guessesSoFarArr.push(letterPressed);
+        s = guessesSoFarArr.join(' ');
+        document.querySelector('#soFar').innerHTML = s;
+        checkLetter(letterPressed);
+      } 
+
+      function checkLetter(letter) {
+          if (randomLetter == letterPressed) {
+            var rL = document.querySelector('#answer');
+            //does not work
+            // rL.innerHTML = "You Win! Letter " + randomLetter;
+            rL.classList.add('answer');
+            alert('You Win. The Letter is ' + randomLetter);
+            
+            wins++;
+            document.querySelector('#wins').innerHTML = wins;
+            startGame();
+            
+        } else {
+          guessesLeft--;
+          document.querySelector('#guessesLeft').innerHTML = guessesLeft;
+          guessesLeftZero(guessesLeft);
+        }
+    }
+
+    //when no gueses left
+    function guessesLeftZero(guessesLeft) {
+      if (guessesLeft <= 0) {
+        confirm('You Lose! Try Again?');
+          losses++;
+          document.querySelector('#losses').innerHTML = losses;
+        startGame();
+      }
+    }
+
+   // main process********************************
+      //initiate the code first time
+      document.onkeyup = function(event) {
+      letterPressed = event.key;
+      checkLetter(letterPressed);
+      guessesSoFar();
+      // console.log(letterPressed);
+  }
+  
+    </script>
+
+</body>
+</html>
