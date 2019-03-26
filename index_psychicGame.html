@@ -62,18 +62,19 @@
         // guessesSoFarArr.length = 0;
         ////does not work - shows not empty array but some last guessed letters;
         guessesSoFarArr = [];
-        guessesSoFar();
+        // guessesSoFar();
 
         //changing html
         document.querySelector('#answer').innerHTML = '???';
         document.querySelector('#wins').innerHTML = wins;
         document.querySelector('#losses').innerHTML = losses;
+        document.getElementById("soFar").innerHTML = "";
       }
       startGame();
       
       //creating array of pressed letters
       function guessesSoFar() {
-        checkLetter(letterPressed);
+        // checkLetter(letterPressed);
         guessesSoFarArr.push(letterPressed);
         s = guessesSoFarArr.join(' ');
         document.querySelector('#soFar').innerHTML = s;
@@ -92,8 +93,7 @@
             startGame();
             
         } else {
-          guessesLeft--;
-          document.querySelector('#guessesLeft').innerHTML = guessesLeft;
+          guessesSoFar();
           guessesLeftZero(guessesLeft);
         }
     }
@@ -105,6 +105,9 @@
           losses++;
           document.querySelector('#losses').innerHTML = losses;
         startGame();
+      } else {
+        guessesLeft--;
+        document.querySelector('#guessesLeft').innerHTML = guessesLeft;
       }
     }
 
@@ -113,7 +116,7 @@
       document.onkeyup = function(event) {
         letterPressed = event.key;
         checkLetter(letterPressed);
-        guessesSoFar();
+        // guessesSoFar();
         }  
      //checking that only lower case letter pressed - does not work
   //     if (event.key >= 97 && event.key <= 122) {
