@@ -45,7 +45,6 @@
     var guessesSoFarArr;
     var s = '';
     var letterPressed;
-    var rL;
    
     
     
@@ -54,12 +53,11 @@
         var randomNum = Math.floor(Math.random() * letterArr.length);
         randomLetter = letterArr[randomNum];
         console.log(randomLetter);
-        // document.querySelector('#answer').classList.remove('answer');
 
         //reset
         //guesses Left shows only even numbers;
         guessesLeft = 10;
-        // guessesSoFarArr.length = 0;
+
         ////does not work - shows not empty array but some last guessed letters;
         guessesSoFarArr = [];
         // guessesSoFar();
@@ -83,10 +81,6 @@
       function checkLetter(l) {
         
           if (randomLetter === letterPressed) {
-            // var rL = document.querySelector('#answer');
-            //does not work
-            // rL.innerHTML = "You Win! Letter " + randomLetter;
-            // rL.classList.add('answer');
             alert('You Win. The Letter is ' + randomLetter);
             wins++;
             document.querySelector('#wins').innerHTML = wins;
@@ -99,7 +93,7 @@
     }
 
     //when no gueses left
-    function guessesLeftZero(guessesLeft) {
+    function guessesLeftZero() {
       if (guessesLeft <= 0) {
         confirm('You Lose! Try Again?');
           losses++;
