@@ -3,8 +3,7 @@ font-family: 'Srisakdi', cursive;
 font-weight: 700;
 }
 
-.container {
-  width: 40%;
+.container  {
   font-size: 1.1rem;
 }
 .answer {
@@ -15,4 +14,17 @@ text-transform: uppercase;
 }
 h1 {
   color: green;
+}
+
+h1 {
+  text-shadow: 2px 2px red;
+}
+#answer {
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#soFar {
+  color: yellow;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
